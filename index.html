@@ -1,14 +1,90 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <title>나의 첫 웹페이지</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>물어봇 | 서비스 소개</title>
 </head>
-
 <body>
-    <h1>나의 첫 웹페이지</h1>
-    <p>안녕하세요! 처음 만든 웹페이지입니다.</p>
-</body>
+  <!--
+  사용자: 학교 생활이 아직 낯선 1학년 신입생
+  목적: 학사 정보를 어디에 물어야 하는지 알고 물어봇 사용법을 이해한다.
+  핵심 행동: 필요한 영역으로 이동하고 이메일로 사전 사용을 신청한다.
+  정보 순서: 서비스 소개 → 주요 기능 → 이용 방법 → 사전 신청
+  -->
 
+  <header>
+    <h1>물어봇</h1>
+    <p>학교에 물어볼 일이 생기면 가장 먼저 찾는 곳입니다.</p>
+
+    <nav aria-label="주요 메뉴">
+      <a href="#about">서비스 소개</a>
+      <a href="#features">주요 기능</a>
+      <a href="#steps">이용 방법</a>
+      <a href="#subscribe">사전 신청</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="about">
+      <h2>서비스 소개</h2>
+      <h3>어디에 물어야 할지 몰라 헤매지 않도록</h3>
+      <p>신입생은 수강신청 기간, 서류 발급 방법, 시설 이용 시간처럼 사소하지만 급한 것을 자주 궁금해합니다. 공지사항은 여기저기 흩어져 있고 학과 사무실은 점심시간에 닫습니다. 물어봇은 학교 공지와 학사 규정을 대신 찾아 답해 주는 안내 챗봇입니다.</p>
+
+      <img
+        src="./assets/images/services.jpg"
+        alt="웃는 얼굴로 인사하는 안내 챗봇 물어봇"
+      >
+    </section>
+
+    <section id="features">
+      <h2>주요 기능</h2>
+
+      <ul>
+        <li>
+          <h3>24시간 답변</h3>
+          <p>사무실이 닫힌 새벽에도 바로 답을 받습니다.</p>
+        </li>
+        <li>
+          <h3>학교 공지 기반</h3>
+          <p>학사 공지와 규정에서 근거를 찾아 알려 줍니다.</p>
+        </li>
+        <li>
+          <h3>평소 말투로 질문</h3>
+          <p>정확한 검색어를 몰라도 말하듯 물어봅니다.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="steps">
+      <h2>이용 방법</h2>
+
+      <ol>
+        <li>궁금한 점을 평소 말투 그대로 입력합니다.</li>
+        <li>물어봇이 관련 공지를 찾아 답변을 보여 줍니다.</li>
+        <li>더 확인할 내용은 담당 부서 연락처로 이어집니다.</li>
+      </ol>
+    </section>
+
+    <section id="subscribe">
+      <h2>사전 신청</h2>
+      <p>3월 정식 공개 전에 먼저 사용해 볼 수 있습니다.</p>
+
+      <form>
+        <label for="email">이메일</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="name@example.com"
+        >
+        <button type="submit">사전 신청하기</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 물어봇</p>
+  </footer>
+</body>
 </html>
