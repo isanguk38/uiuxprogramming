@@ -14,11 +14,12 @@
   정보 순서: 서비스 소개 → 주요 기능 → 이용 방법 → 사전 신청
   -->
 
-  <header>
+  <header class="site-header">
+    <p class="eyebrow">CAMPUS DEADLINE SERVICE</p>
     <h1>물어봇</h1>
-    <p>학교에 물어볼 일이 생기면 가장 먼저 찾는 곳입니다.</p>
+    <p class="header-description">학교에 물어볼 일이 생기면 가장 먼저 찾는 곳입니다.</p>
 
-    <nav aria-label="주요 메뉴">
+    <nav class="site-nav" aria-label="주요 메뉴">
       <a href="#about">서비스 소개</a>
       <a href="#features">주요 기능</a>
       <a href="#steps">이용 방법</a>
@@ -27,30 +28,33 @@
   </header>
 
   <main>
-    <section id="about">
+    <section id="about" class="content-section">
       <h2>서비스 소개</h2>
-      <h3>어디에 물어야 할지 몰라 헤매지 않도록</h3>
-      <p>신입생은 수강신청 기간, 서류 발급 방법, 시설 이용 시간처럼 사소하지만 급한 것을 자주 궁금해합니다. 공지사항은 여기저기 흩어져 있고 학과 사무실은 점심시간에 닫습니다. 물어봇은 학교 공지와 학사 규정을 대신 찾아 답해 주는 안내 챗봇입니다.</p>
-
-      <img
-        src="./assets/images/services.jpg"
-        alt="웃는 얼굴로 인사하는 안내 챗봇 물어봇"
-      >
+      <div class="about-layout">
+        <div class="about-text">
+          <h3>어디에 물어야 할지 몰라 헤매지 않도록</h3>
+          <p>신입생은 수강신청 기간, 서류 발급 방법, 시설 이용 시간처럼 사소하지만 급한 것을 자주 궁금해합니다. 공지사항은 여기저기 흩어져 있고 학과 사무실은 점심시간에 닫습니다. 물어봇은 학교 공지와 학사 규정을 대신 찾아 답해 주는 안내 챗봇입니다.</p>
+        </div>
+        <img class="service-image"
+          src="./assets/images/services.jpg"
+          alt="웃는 얼굴로 인사하는 안내 챗봇 물어봇"
+        >
+      </div>
     </section>
 
-    <section id="features">
+    <section id="features" class="content-section">
       <h2>주요 기능</h2>
 
-      <ul>
-        <li>
+      <ul class="feature-list">
+        <li class="feature-card">
           <h3>24시간 답변</h3>
           <p>사무실이 닫힌 새벽에도 바로 답을 받습니다.</p>
         </li>
-        <li>
+        <li class="feature-card">
           <h3>학교 공지 기반</h3>
           <p>학사 공지와 규정에서 근거를 찾아 알려 줍니다.</p>
         </li>
-        <li>
+        <li class="feature-card">
           <h3>평소 말투로 질문</h3>
           <p>정확한 검색어를 몰라도 말하듯 물어봅니다.</p>
         </li>
@@ -71,20 +75,20 @@
       <h2>사전 신청</h2>
       <p>3월 정식 공개 전에 먼저 사용해 볼 수 있습니다.</p>
 
-      <form>
-        <label for="email">이메일</label>
+      <form class="subscribe-form">
+        <label class="email-field" for="email">이메일</label>
         <input
           type="email"
           id="email"
           name="email"
           placeholder="name@example.com"
         >
-        <button type="submit">사전 신청하기</button>
+        <button class="primary-button" type="submit">사전 신청하기</button>
       </form>
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <p>© 2026 물어봇</p>
   </footer>
 </body>
