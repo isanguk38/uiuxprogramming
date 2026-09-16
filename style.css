@@ -149,21 +149,24 @@
   
   .subscribe-form {
     display: flex;
-    align-items: flex-end;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 12px;
     max-width: 570px;
   }
   
   .email-field {
-    flex: 1;
+    flex: 0 0 100%;
     margin: 0;
     font-weight: 700;
   }
   
   input[type="email"] {
+    flex: 1;
+    min-width: 0;
     display: block;
-    width: 100%;
-    margin-top: 8px;
+    width: auto;
+    margin-top: 0;
     padding: 12px 14px;
     border: 1px solid #bfc1d1;
     border-radius: 8px;
@@ -177,6 +180,8 @@
   }
   
   .primary-button {
+    flex-shrink: 0;
+    white-space: nowrap;
     padding: 12px 18px;
     border: 0;
     border-radius: 8px;
