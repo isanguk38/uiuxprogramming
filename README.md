@@ -26,6 +26,8 @@ UI/UX 프로그래밍 · 2주차 과제
 ```
 uiuxprogramming/
 ├── index.html
+├── style.css
+├── script.js
 ├── README.md
 └── assets/
     └── images/
@@ -38,8 +40,9 @@ uiuxprogramming/
 | 주요 기능 | `features` | `ul` > `li` | 순서 없는 기능 3개 |
 | 이용 방법 | `steps` | `ol` > `li` | 순서가 있는 사용 흐름 3단계 |
 | 사전 신청 | `subscribe` | `form` | 이메일 입력과 신청 버튼 |
+| 알림 설정 | `settings` | `section` + `button` | 알림 저장 상태와 결과 문구 |
 
-`header`의 `nav` 링크 네 개가 각각 위 `id`로 이동합니다.
+`header`의 `nav` 링크 다섯 개가 각각 위 `id`로 이동합니다. 알림 설정은 `<a href="#settings">알림 설정</a>`로 추가했습니다.
 
 ---
 
@@ -97,3 +100,16 @@ uiuxprogramming/
 769px | 카드가 칸 너비에 맞춰 자동으로 줄바꿈이 됩니다.
 768px | 메뉴·소개·카드·폼이 한 열로 전환됩니다.
 390px | 가로 스크롤 없이 읽고 이메일 신청이 가능합니다.
+
+---
+
+# 5주차 JavaScript로 값을 저장하고 결과 만들기
+
+## 확인한 문제
+메뉴에도 알림 설정 영역으로 가는 링크가 없어 아래로 스크롤해야만 찾을 수 있었습니다.
+
+## 수정한 내용
+`nav`에 `<a href="#settings">알림 설정</a>`을 넣어 `id="settings"` 섹션으로 이동하게 했습니다.
+
+## 달라진 점
+메뉴의 알림 설정을 누르면 해당 영역으로 바로 이동합니다.
