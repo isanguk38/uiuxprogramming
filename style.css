@@ -278,13 +278,18 @@ input[type="email"]:focus {
 }
 
 /* 저장 전 안내 문구 */
-#saveMessage {
-  margin-top: 16px;
+#saveMessage,
+#subscribeMessage {
   color: #555763;
 }
 
+#saveMessage {
+  margin-top: 16px;
+}
+
 /* JavaScript가 is-saved를 추가하면 완료 상태가 보입니다. */
-#saveMessage.is-saved {
+#saveMessage.is-saved,
+#subscribeMessage.is-saved {
   color: #245c3a;
   background-color: #e7f7ed;
   padding: 12px;
@@ -292,9 +297,12 @@ input[type="email"]:focus {
   font-weight: 700;
 }
 
-/* 저장 뒤 버튼을 비활성화합니다. */
-#saveButton:disabled {
+/* 저장·신청 뒤 버튼을 비활성화합니다. */
+#saveButton:disabled,
+.primary-button:disabled,
+.primary-button:disabled:hover {
   color: #ffffff;
   background-color: #a8a8b2;
   cursor: not-allowed;
+  transform: none;
 }
