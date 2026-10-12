@@ -99,3 +99,130 @@ function handleTabClick(event) {
 tabs.forEach(function (tab) {
   tab.addEventListener("click", handleTabClick);
 });
+
+// 7주차 사용자 흐름: 안내 확인 → 질문 작성 → 분야 선택 → 내용 확인 → 접수 완료
+const askFlow = document.querySelector("#askFlow");
+const askSteps = document.querySelectorAll(".ask-step");
+const askProgress = document.querySelector("#askProgress");
+const askName = document.querySelector("#askName");
+const askQuestion = document.querySelector("#askQuestion");
+const askCategory = document.querySelector("#askCategory");
+const askError1 = document.querySelector("#askError1");
+const askError2 = document.querySelector("#askError2");
+const askEtcHelp = document.querySelector("#askEtcHelp");
+const summaryName = document.querySelector("#summaryName");
+const summaryCategory = document.querySelector("#summaryCategory");
+const summaryQuestion = document.querySelector("#summaryQuestion");
+const askStepNames = ["질문 작성", "분야 선택", "내용 확인"];
+
+function showAskStep(step) {
+  askSteps.forEach(function (item) {
+    item.hidden = Number(item.dataset.step) !== step;
+  });
+  askProgress.textContent = step <= 3
+    ? step + " / 3 · " + askStepNames[step - 1]
+    : "접수 완료";
+}
+
+function clearAskErrors() {
+  askError1.textContent = "";
+  askError2.textContent = "";
+  askName.classList.remove("has-error");
+  askQuestion.classList.remove("has-error");
+  askCategory.classList.remove("has-error");
+}
+
+function handleStartClick() {
+  // 6주차의 안내 확인 조건을 통과한 경우에만 흐름에 들어갑니다.
+  if (agreeCheck.checked === false) {
+    return;
+  }
+  askFlow.hidden = false;
+  showAskStep(1);
+  askFlow.scrollIntoView({ behavior: "smooth", block: "start" });
+  askName.focus();
+}
+
+function handleAskNext1() {
+  const missingName = askName.value.trim() === "";
+  const missingQuestion = askQuestion.value.trim() === "";
+
+  if (missingName || missingQuestion) {
+    askError1.textContent = missingName
+      ? "이름을 입력해 주세요."
+      : "궁금한 점을 입력해 주세요.";
+    askName.classList.toggle("has-error", missingName);
+    askQuestion.classList.toggle("has-error", missingQuestion);
+    (missingName ? askName : askQuestion).focus();
+    return;
+  }
+
+  clearAskErrors();
+  showAskStep(2);
+  askCategory.focus();
+}
+
+function handleCategoryChange() {
+  askEtcHelp.hidden = askCategory.value !== "기타";
+  if (askCategory.value !== "") {
+    askError2.textContent = "";
+    askCategory.classList.remove("has-error");
+  }
+}
+
+function handleAskNext2() {
+  if (askCategory.value === "") {
+    askError2.textContent = "질문 분야를 선택해 주세요. 잘 모르겠다면 '기타'를 고르면 됩니다.";
+    askCategory.classList.add("has-error");
+    askCategory.focus();
+    return;
+  }
+
+  clearAskErrors();
+  summaryName.textContent = askName.value.trim();
+  summaryCategory.textContent = askCategory.value;
+  summaryQuestion.textContent = askQuestion.value.trim();
+  showAskStep(3);
+  document.querySelector("#askComplete").focus();
+}
+
+function handleAskComplete() {
+  showAskStep(4);
+  document.querySelector("#askRestart").focus();
+}
+
+function handleAskRestart() {
+  askName.value = "";
+  askQuestion.value = "";
+  askCategory.value = "";
+  askEtcHelp.hidden = true;
+  clearAskErrors();
+  summaryName.textContent = "";
+  summaryCategory.textContent = "";
+  summaryQuestion.textContent = "";
+  showAskStep(1);
+  askName.focus();
+}
+
+// 값을 고치면 해당 칸의 오류 표시를 바로 지웁니다.
+function clearFieldError(event) {
+  event.currentTarget.classList.remove("has-error");
+}
+
+startButton.addEventListener("click", handleStartClick);
+document.querySelector("#askNext1").addEventListener("click", handleAskNext1);
+askCategory.addEventListener("change", handleCategoryChange);
+document.querySelector("#askBack2").addEventListener("click", function () {
+  clearAskErrors();
+  showAskStep(1);
+  askQuestion.focus();
+});
+document.querySelector("#askNext2").addEventListener("click", handleAskNext2);
+document.querySelector("#askBack3").addEventListener("click", function () {
+  showAskStep(2);
+  askCategory.focus();
+});
+document.querySelector("#askComplete").addEventListener("click", handleAskComplete);
+document.querySelector("#askRestart").addEventListener("click", handleAskRestart);
+askName.addEventListener("input", clearFieldError);
+askQuestion.addEventListener("input", clearFieldError);
