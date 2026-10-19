@@ -187,6 +187,7 @@ function handleAskNext2() {
 }
 
 function handleAskComplete() {
+  addMyQuestion();
   showAskStep(4);
   document.querySelector("#askRestart").focus();
 }
@@ -226,3 +227,98 @@ document.querySelector("#askComplete").addEventListener("click", handleAskComple
 document.querySelector("#askRestart").addEventListener("click", handleAskRestart);
 askName.addEventListener("input", clearFieldError);
 askQuestion.addEventListener("input", clearFieldError);
+
+// 중간고사 새 기능: 내 질문 목록과 접수 취소
+const myQuestionsMessage = document.querySelector("#myQuestionsMessage");
+const myQuestionsEmpty = document.querySelector("#myQuestionsEmpty");
+const myQuestionsList = document.querySelector("#myQuestionsList");
+const myQuestions = [];
+let nextQuestionId = 1;
+
+function addMyQuestion() {
+  myQuestions.push({
+    id: nextQuestionId,
+    name: askName.value.trim(),
+    category: askCategory.value,
+    question: askQuestion.value.trim(),
+    status: "접수됨",
+  });
+  nextQuestionId += 1;
+  myQuestionsMessage.textContent = "질문이 내 질문 목록에 추가되었습니다.";
+  renderMyQuestions();
+}
+
+function renderMyQuestions() {
+  const isEmpty = myQuestions.length === 0;
+  myQuestionsEmpty.hidden = !isEmpty;
+  myQuestionsList.hidden = isEmpty;
+  myQuestionsList.innerHTML = "";
+
+  myQuestions.forEach(function (item) {
+    const isCanceled = item.status === "취소됨";
+    const li = document.createElement("li");
+    li.className = "my-question-item";
+    li.classList.toggle("is-canceled", isCanceled);
+
+    const info = document.createElement("div");
+    info.className = "my-question-info";
+
+    const status = document.createElement("span");
+    status.className = "my-question-status";
+    status.textContent = item.status;
+
+    const category = document.createElement("strong");
+    category.textContent = item.category;
+
+    const question = document.createElement("p");
+    question.className = "my-question-text";
+    question.textContent = item.question;
+
+    const name = document.createElement("p");
+    name.className = "my-question-name";
+    name.textContent = item.name + "님의 질문";
+
+    info.append(status, category, question, name);
+    li.append(info);
+
+    // 접수된 질문만 취소할 수 있습니다.
+    if (!isCanceled) {
+      const cancelButton = document.createElement("button");
+      cancelButton.className = "secondary-button";
+      cancelButton.type = "button";
+      cancelButton.textContent = "접수 취소";
+      cancelButton.dataset.id = item.id;
+      li.append(cancelButton);
+    }
+
+    myQuestionsList.append(li);
+  });
+}
+
+function handleMyQuestionsClick(event) {
+  const cancelButton = event.target.closest("button[data-id]");
+  if (cancelButton === null) {
+    return;
+  }
+
+  const item = myQuestions.find(function (question) {
+    return question.id === Number(cancelButton.dataset.id);
+  });
+  if (item === undefined || item.status !== "접수됨") {
+    return;
+  }
+
+  const agreed = window.confirm("'" + item.question + "' 질문의 접수를 취소할까요?");
+  if (agreed === false) {
+    myQuestionsMessage.textContent = "접수를 유지했습니다. 물어봇이 이 질문에 계속 답변을 준비합니다.";
+    cancelButton.focus();
+    return;
+  }
+
+  item.status = "취소됨";
+  myQuestionsMessage.textContent = "질문 접수를 취소했습니다. 다시 궁금해지면 새 질문을 접수할 수 있습니다.";
+  renderMyQuestions();
+  myQuestionsMessage.focus();
+}
+
+myQuestionsList.addEventListener("click", handleMyQuestionsClick);
