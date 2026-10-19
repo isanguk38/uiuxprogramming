@@ -240,7 +240,9 @@ uiuxprogramming/
 ---
 
 # 중간고사 응용 구현 — 내 질문 목록과 접수 취소
-
+# 배포 주소 : 
+	1. https://github.com/isanguk38/uiuxprogramming.git
+	2. https://isanguk38.github.io/uiuxprogramming/
 ## 새로 추가한 것
 
 7주차 '물어봇에게 질문하기' 흐름의 끝(질문 보내기)에 이어서, 접수한 질문이 **내 질문 목록**에 쌓이고 필요 없어진 질문은 **접수 취소**로 상태를 바꿀 수 있도록 했습니다.
