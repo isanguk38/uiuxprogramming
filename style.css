@@ -515,18 +515,98 @@ body.dark .my-question-item {
   background-color: #f4f3ff;
 }
 
-.ask-error {
-  margin: 12px 0 0;
-  color: #9d2439;
-  font-weight: 700;
-}
-
-.ask-error:empty {
+/* 9주차: 필드 구조(레이블·입력·안내·글자 수·오류)와 입력 상태 */
+.ask-field[hidden] {
   display: none;
 }
 
-.ask-step .has-error {
+.required-badge {
+  margin-left: 4px;
+  color: #9d2439;
+  font-size: 13px;
+}
+
+.field-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.field-count {
+  flex-shrink: 0;
+  margin-top: 8px;
+  color: #5e6272;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* 오류 문장이 들어갈 자리를 미리 확보해 화면이 흔들리지 않게 합니다. */
+.field-error {
+  min-height: 22px;
+  margin: 4px 0 0;
+  color: #9d2439;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ask-step input:focus-visible,
+.ask-step textarea:focus-visible,
+.ask-step select:focus-visible {
+  outline: 3px solid #89a7ff;
+}
+
+.ask-field.is-valid input,
+.ask-field.is-valid textarea {
+  border-color: #16805d;
+}
+
+.ask-field.is-valid .field-meta .ask-help {
+  color: #16805d;
+  font-weight: 700;
+}
+
+.ask-field.is-error input,
+.ask-field.is-error textarea,
+.ask-field.is-error select {
   border-color: #9d2439;
+  background-color: #fff5f7;
+}
+
+.ask-option {
+  margin-top: 8px;
+}
+
+.ask-step .check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ask-step .check-row input {
+  flex: 0 0 auto;
+  width: auto;
+  margin: 0;
+}
+
+.ask-submit-message {
+  margin: 16px 0 0;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.ask-submit-message:empty {
+  display: none;
+}
+
+.ask-submit-message.is-loading {
+  color: #4038a5;
+  background-color: #ebe9ff;
+}
+
+.ask-submit-message.is-error {
+  color: #9d2439;
   background-color: #fff5f7;
 }
 
@@ -605,8 +685,37 @@ body.dark .ask-notice {
   background-color: #3a3950;
 }
 
-body.dark .ask-error {
+body.dark .field-error,
+body.dark .required-badge {
   color: #ff9fb0;
+}
+
+body.dark .field-count {
+  color: #b9bac8;
+}
+
+body.dark .ask-field.is-valid .field-meta .ask-help {
+  color: #7fd8a8;
+}
+
+body.dark .ask-field.is-valid input,
+body.dark .ask-field.is-valid textarea {
+  border-color: #7fd8a8;
+}
+
+body.dark .ask-field.is-error input,
+body.dark .ask-field.is-error textarea,
+body.dark .ask-field.is-error select {
+  border-color: #ff9fb0;
+  background-color: #3a2a30;
+}
+
+body.dark .ask-submit-message.is-loading {
+  color: #4038a5;
+}
+
+body.dark .ask-submit-message.is-error {
+  color: #9d2439;
 }
 
 body.dark .ask-result {
